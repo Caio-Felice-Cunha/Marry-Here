@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block 'body' %}
+    <div class="max-w-7xl mx-auto mt-12">
+        <div class="mx-auto max-w-2xl text-center">
+
+            <h2 class="text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Hello, {{guest.guest_name}}</h2>
+            
+            
+            <p class="mt-2 text-lg leading-8 text-gray-600">Confirm your presence at the wedding: <a href="{% url 'answer_attendance' %}?answer=C&token={{guest.token}}" class="text-green-400">confirm</a>, <a href="{% url 'answer_attendance' %}?answer=R&token={{guest.token}}" class="text-red-400">refuse</a></p>
+       
+        </div>
+        <br>
+        <hr>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <p class="mt-2 text-lg leading-8 text-gray-600">Choose a gift for the bride and groom</p>
+                <div class="grid grid-cols-3 mt-4 gap-4">
+                    
+                    {% for gift in gifts %}
+                        <div>
+                            {% if gift.photo %}
+                            <img class="aspect-[3/2] w-full rounded-2xl object-cover" src="{{gift.photo.url}}" alt="">
+                            {% endif %}
+                            <h3 class="mt-2 text-lg font-semibold leading-8 text-gray-900">{{gift.gift_name}}</h3>
+                            <p class="text-base leading-7 text-gray-600"></p>
+
+                            {% if gift.significance <= 2 %}
+                            <span class="inline-flex items-center rounded-md bg-green-400/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-400/30">Less relevant <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-green-400">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                </svg>
+                            </span>
+                            {% elif gift.significance < 4 %}
+                            <span class="inline-flex items-center rounded-md bg-orange-400/10 px-2 py-1 text-xs font-medium text-orange-400 ring-1 ring-inset ring-orange-400/30">Relevant <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-orange-400">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                </svg>
+                            </span>
+                            {% else %}
+                            <span class="inline-flex items-center rounded-md bg-red-400/10 px-2 py-1 text-xs font-medium text-red-400 ring-1 ring-inset ring-red-400/30">Highly relevant <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-red-400">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                </svg>
+                            </span>
+                            {% endif %}
+
+                            <a href="/guests/reserve_gift/{{gift.id}}?token={{guest.token}}" class="rounded-md block w-full mt-4 bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400 cursor-pointer">Reserve</a>
+
+
+                            
+                            
+                        </div>
+
+                    {% endfor %}
+                    
+        
+                </div>
+            </div>
+
+            <div class="bg-slate-200/20 p-6 rounded-md mt-4  drop-shadow-lg ring-1 ring-gray-600/20">
+                
+                <h2 class="text-balance text-xl font-semibold tracking-tight text-gray-900 text-center">Add your companions</h2>
+                <form action="" method="POST">
+                    <label class="mt-4 block text-sm leading-6 text-gray-900">Name</label>
+                    <input type="text" name="name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <input type="submit" class="rounded-md mt-4 bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400 cursor-pointer" value="Add">
+                </form>
+                <br>
+                <br>
+                <hr>
+                <br>
+                <ul>
+                    
+                        <li class="bg-slate-100 p-4">
+                            Caio Cunha
+
+                        </li>
+                        <br>
+                    
+                </ul>
+
+            </div>  
+        </div>
+        
+        
+        
+    </div>
+       
+{% endblock %}
