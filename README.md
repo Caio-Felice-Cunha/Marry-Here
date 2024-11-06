@@ -1,6 +1,9 @@
 # Marry-Here
 Website that helps you to organize the most important day of your life
 
+![Couple-support](https://github.com/user-attachments/assets/2b8b44b8-5ccd-42c2-93f1-f53cedc72d05)
+
+
 ### Wedding Gift Registry System
 
 A Django-based web application for managing wedding gifts and guest lists. This system allows couples to create a gift registry and manage their wedding guests in one place.
