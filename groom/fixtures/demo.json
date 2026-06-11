@@ -1,0 +1,232 @@
+[
+  {
+    "model": "groom.guests",
+    "pk": 1,
+    "fields": {
+      "guest_name": "Alice Johnson",
+      "whatsapp": "1-555-0101",
+      "maximum_companions": 2,
+      "token": "demo-token-alice-0001",
+      "status": "WFC"
+    }
+  },
+  {
+    "model": "groom.guests",
+    "pk": 2,
+    "fields": {
+      "guest_name": "Bruno Almeida",
+      "whatsapp": "1-555-0102",
+      "maximum_companions": 1,
+      "token": "demo-token-bruno-0002",
+      "status": "C"
+    }
+  },
+  {
+    "model": "groom.guests",
+    "pk": 3,
+    "fields": {
+      "guest_name": "Carla Mendes",
+      "whatsapp": "1-555-0103",
+      "maximum_companions": 0,
+      "token": "demo-token-carla-0003",
+      "status": "R"
+    }
+  },
+  {
+    "model": "groom.guests",
+    "pk": 4,
+    "fields": {
+      "guest_name": "Daniel Smith",
+      "whatsapp": "1-555-0104",
+      "maximum_companions": 3,
+      "token": "demo-token-daniel-0004",
+      "status": "WFC"
+    }
+  },
+  {
+    "model": "groom.guests",
+    "pk": 5,
+    "fields": {
+      "guest_name": "Elena Rossi",
+      "whatsapp": "1-555-0105",
+      "maximum_companions": 1,
+      "token": "demo-token-elena-0005",
+      "status": "C"
+    }
+  },
+  {
+    "model": "groom.guests",
+    "pk": 6,
+    "fields": {
+      "guest_name": "Felipe Costa",
+      "whatsapp": "1-555-0106",
+      "maximum_companions": 2,
+      "token": "demo-token-felipe-0006",
+      "status": "WFC"
+    }
+  },
+  {
+    "model": "groom.guests",
+    "pk": 7,
+    "fields": {
+      "guest_name": "Grace Lee",
+      "whatsapp": "1-555-0107",
+      "maximum_companions": 0,
+      "token": "demo-token-grace-0007",
+      "status": "C"
+    }
+  },
+  {
+    "model": "groom.guests",
+    "pk": 8,
+    "fields": {
+      "guest_name": "Hugo Pereira",
+      "whatsapp": "1-555-0108",
+      "maximum_companions": 1,
+      "token": "demo-token-hugo-0008",
+      "status": "WFC"
+    }
+  },
+  {
+    "model": "groom.guests",
+    "pk": 9,
+    "fields": {
+      "guest_name": "Isabel Garcia",
+      "whatsapp": "1-555-0109",
+      "maximum_companions": 2,
+      "token": "demo-token-isabel-0009",
+      "status": "R"
+    }
+  },
+  {
+    "model": "groom.guests",
+    "pk": 10,
+    "fields": {
+      "guest_name": "Joao Santos",
+      "whatsapp": "1-555-0110",
+      "maximum_companions": 1,
+      "token": "demo-token-joao-0010",
+      "status": "WFC"
+    }
+  },
+  {
+    "model": "groom.gifts",
+    "pk": 1,
+    "fields": {
+      "gift_name": "Bed",
+      "photo": "gifts/Bed.webp",
+      "price": "899.00",
+      "significance": 5,
+      "reserved": false,
+      "reserved_by": null
+    }
+  },
+  {
+    "model": "groom.gifts",
+    "pk": 2,
+    "fields": {
+      "gift_name": "Cookware Set",
+      "photo": "gifts/Cookware.png",
+      "price": "149.90",
+      "significance": 3,
+      "reserved": false,
+      "reserved_by": null
+    }
+  },
+  {
+    "model": "groom.gifts",
+    "pk": 3,
+    "fields": {
+      "gift_name": "Love Photo Print",
+      "photo": "gifts/Love_Photo_Print.png",
+      "price": "39.90",
+      "significance": 2,
+      "reserved": false,
+      "reserved_by": null
+    }
+  },
+  {
+    "model": "groom.gifts",
+    "pk": 4,
+    "fields": {
+      "gift_name": "Microwave",
+      "photo": "gifts/Microwave.avif",
+      "price": "129.00",
+      "significance": 3,
+      "reserved": true,
+      "reserved_by": 2
+    }
+  },
+  {
+    "model": "groom.gifts",
+    "pk": 5,
+    "fields": {
+      "gift_name": "Sofa",
+      "photo": "gifts/Sofa.avif",
+      "price": "1299.00",
+      "significance": 5,
+      "reserved": false,
+      "reserved_by": null
+    }
+  },
+  {
+    "model": "groom.gifts",
+    "pk": 6,
+    "fields": {
+      "gift_name": "Television",
+      "photo": "gifts/TV.jpg",
+      "price": "799.00",
+      "significance": 4,
+      "reserved": false,
+      "reserved_by": null
+    }
+  },
+  {
+    "model": "groom.gifts",
+    "pk": 7,
+    "fields": {
+      "gift_name": "Wheeled Cooler",
+      "photo": "gifts/Wheeled_Cooler.png",
+      "price": "89.90",
+      "significance": 1,
+      "reserved": false,
+      "reserved_by": null
+    }
+  },
+  {
+    "model": "groom.gifts",
+    "pk": 8,
+    "fields": {
+      "gift_name": "Coffee Machine and Grinder",
+      "photo": "gifts/coffe_machine_and_grinder.png",
+      "price": "249.00",
+      "significance": 4,
+      "reserved": true,
+      "reserved_by": 5
+    }
+  },
+  {
+    "model": "groom.gifts",
+    "pk": 9,
+    "fields": {
+      "gift_name": "Fridge",
+      "photo": "gifts/fridge.webp",
+      "price": "1099.00",
+      "significance": 5,
+      "reserved": false,
+      "reserved_by": null
+    }
+  },
+  {
+    "model": "groom.gifts",
+    "pk": 10,
+    "fields": {
+      "gift_name": "World Map",
+      "photo": "gifts/world_map.png",
+      "price": "59.90",
+      "significance": 2,
+      "reserved": false,
+      "reserved_by": null
+    }
+  }
+]
