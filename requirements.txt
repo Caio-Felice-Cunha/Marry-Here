@@ -1,0 +1,5 @@
+# Runtime dependencies for Marry-Here.
+# Django: the web framework (project was built on 5.1, runs on 5.1+).
+# Pillow: required by the gift photo ImageField.
+Django>=5.1
+Pillow>=10.0
