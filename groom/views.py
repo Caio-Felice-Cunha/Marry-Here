@@ -1,6 +1,4 @@
-from pickle import INT
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
 from .models import Gifts, Guests
 
 # Create your views here.
@@ -11,14 +9,17 @@ def home(request):
         reserved = Gifts.objects.filter(reserved=True).count()
         data = [not_reserved, reserved]
         return render(request, 'home.html', {'all_gifts': all_gifts, 'data':data})
-    
+
     elif request.method == 'POST':
         gift_name       = request.POST.get('gift_name')
         photo           = request.FILES.get('photo')
         price           = request.POST.get('price')
-        significance    = int(request.POST.get('significance'))
-        reserved        = request.POST.get('reserved')
-        
+
+        try:
+            significance = int(request.POST.get('significance'))
+        except (TypeError, ValueError):
+            return redirect('home')
+
         if significance < 1 or significance > 5:
             return redirect('home')
 
@@ -32,7 +33,7 @@ def home(request):
         gifts.save()
 
         return redirect('home')
-    
+
 def guests_list(request):
     if request.method == "GET":
         guests = Guests.objects.all()
@@ -40,7 +41,11 @@ def guests_list(request):
     elif request.method == "POST":
         guest_name = request.POST.get('guest_name')
         whatsapp = request.POST.get('whatsapp')
-        maximum_companions = int(request.POST.get('maximum_companions'))
+
+        try:
+            maximum_companions = int(request.POST.get('maximum_companions'))
+        except (TypeError, ValueError):
+            maximum_companions = 0
 
         guests = Guests(
             guest_name=guest_name,
