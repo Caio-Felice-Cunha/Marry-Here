@@ -6,19 +6,24 @@ Website that helps you to organize the most important day of your life
 
 ### Wedding Gift Registry System
 
-A Django-based web application for managing wedding gifts and guest lists. This system allows couples to create a gift registry and manage their wedding guests in one place.
+A Django web application for managing wedding gifts and guest lists. Couples build a gift registry and manage guests in one place. Each guest gets a tokenized invitation link where they can confirm attendance and reserve a gift.
+
+## What it does (10-second version)
+
+- The couple adds gifts (name, photo, price, significance 1 to 5) at `/groom/` and registers guests at `/groom/guests_list`.
+- Each guest receives a unique link, `/guests/?token=...`, where they confirm or refuse attendance and reserve one of the available gifts.
+- The home page shows a Chart.js pie of reserved vs. available gifts, and gifts are color-coded by significance.
 
 ## Important Note
-This is an MVP (Minimum Viable Product) version of the application, developed as part of the "4 Days 4 Projects" initiative by [Pythonando](https://pythonando.com.br) on YouTube.
+This is an MVP (Minimum Viable Product), built as part of the "4 Days 4 Projects" initiative by [Pythonando](https://pythonando.com.br) on YouTube. The token in the invitation link is the only access control, so treat the URLs as shareable secrets and do not put real personal data in a public deployment.
 
 ### Pending Features
-The following features are planned for future implementation:
-- Token validation system
-- Gift-guest relationship validation
-- Gift confirmation authorization system
-- Authentication system with login and password
-- Access control for bride and groom pages
-- Additional security measures
+The following are intentionally not implemented yet:
+- WhatsApp integration (the WhatsApp field is currently stored and shown as plain text only).
+- Guest companion management (the "Add your companions" form on the guest page has no backing logic yet; the companion list is a static placeholder).
+- Login and password authentication.
+- Access control for the couple's admin pages beyond Django admin.
+- Gift-guest relationship validation and confirmation authorization.
 
 ## Features
 
@@ -32,10 +37,9 @@ The following features are planned for future implementation:
 
 ### Guest Management
 - Register and track wedding guests
-- Generate unique invitation links for each guest
+- Generate a unique tokenized invitation link for each guest
 - Track guest confirmation status
-- Manage guest companions
-- WhatsApp integration for guest communication
+- Store a WhatsApp number per guest (displayed as text)
 - Status tracking (Waiting for confirmation, Confirmed, Refused)
 
 ## Technology Stack
@@ -51,7 +55,7 @@ The following features are planned for future implementation:
 1. Clone the repository:
 ```bash
 git clone https://github.com/Caio-Felice-Cunha/Marry-Here.git
-cd wedding-registry
+cd Marry-Here
 ```
 
 2. Create and activate a virtual environment:
@@ -62,20 +66,42 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 3. Install dependencies:
 ```bash
-pip install django
-pip install Pillow  # For image handling
+pip install -r requirements.txt
 ```
 
 4. Apply migrations:
 ```bash
-python manage.py makemigrations
 python manage.py migrate
 ```
 
-5. Run the development server:
+5. (Optional) Load demo data: 10 sample gifts and 10 sample guests.
+```bash
+python manage.py loaddata demo
+```
+
+6. Create an admin account to use Django admin at `/admin/`:
+```bash
+python manage.py createsuperuser
+```
+
+7. Run the development server:
 ```bash
 python manage.py runserver
 ```
+
+### Configuration
+
+The app runs with safe development defaults and needs no `.env` file locally. For any non-local deployment, copy `.env.example` to `.env` and set the values (`DJANGO_SECRET_KEY`, `DJANGO_DEBUG=False`, `DJANGO_ALLOWED_HOSTS`, `SITE_URL`). These are read in `core/settings.py`. `SITE_URL` is the base used to build the absolute invitation links shown on the guest list.
+
+### URLs
+
+| Path | Purpose |
+| --- | --- |
+| `/` | Redirects to `/groom/` |
+| `/groom/` | Add gifts, view the reservation chart |
+| `/groom/guests_list` | Register guests, see invitation links and statuses |
+| `/guests/?token=<token>` | Guest page: confirm/refuse attendance, reserve a gift |
+| `/admin/` | Django admin (requires a superuser) |
 
 ## Project Structure
 
@@ -99,7 +125,7 @@ python manage.py runserver
 ## Usage
 
 ### Adding Gifts
-1. Navigate to the home page
+1. Go to `/groom/` (the root URL redirects there)
 2. Fill in the gift details form:
    - Gift name
    - Upload a photo
@@ -108,7 +134,7 @@ python manage.py runserver
 3. Submit the form to add the gift to the registry
 
 ### Managing Guests
-1. Access the guests section
+1. Go to `/groom/guests_list`
 2. Add new guests with their details:
    - Guest name
    - WhatsApp number
@@ -139,9 +165,16 @@ python manage.py runserver
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+## Testing
+
+Run the test suite (15 tests covering the views, models, and the invitation flow):
+```bash
+python manage.py test
+```
+
 ## License
 
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Credits
 
